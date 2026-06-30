@@ -3,7 +3,10 @@ function showPage(id){
   document.getElementById(id).classList.add("active");
 }
 
-/* FLOW CONTROL */
+/* =========================
+   FLOW CONTROL
+========================= */
+
 document.getElementById("next1").onclick = () => {
   showPage("page2");
   setTimeout(spawnFlowers, 600);
@@ -15,10 +18,18 @@ document.getElementById("next2").onclick = () => {
 };
 
 document.getElementById("next3").onclick = () => {
+  showPage("page4");
+  setTimeout(startRain, 300);
+};
+
+document.getElementById("toPage5").onclick = () => {
   showBuket();
 };
 
-/* 🌸 FLOWER MEKAR PERLUNYA SLOW */
+/* =========================
+   PAGE 2 - FLOWERS
+========================= */
+
 function spawnFlowers(){
   const el = document.getElementById("flowers");
   el.innerHTML = "";
@@ -31,7 +42,10 @@ function spawnFlowers(){
   }, 600);
 }
 
-/* 💬 BUBBLE MUNCUL SATU-SATU */
+/* =========================
+   PAGE 3 - CHAT BUBBLES
+========================= */
+
 function showBubbles(){
   const bubbles = document.querySelectorAll(".bubble");
 
@@ -43,11 +57,18 @@ function showBubbles(){
   });
 }
 
-/* 🌸 RAIN ENDING (halus, tidak spam) */
+/* =========================
+   PAGE 4 - RAIN EFFECT
+========================= */
+
+let rainInterval;
+
 function startRain(){
   const rain = document.querySelector(".rain");
 
-  setInterval(() => {
+  rain.innerHTML = "";
+
+  rainInterval = setInterval(() => {
     const f = document.createElement("div");
     f.classList.add("flower");
     f.innerHTML = "🌸";
@@ -61,13 +82,17 @@ function startRain(){
   }, 400);
 }
 
+/* =========================
+   PAGE 5 - BUKET ANIMATION
+========================= */
+
 function showBuket(){
   showPage("page5");
 
   const buket = document.getElementById("buket");
   buket.innerHTML = "";
 
-  let total = 12; // jumlah bunga buket
+  let total = 12;
   let i = 0;
 
   const interval = setInterval(() => {
@@ -86,30 +111,7 @@ function showBuket(){
     if(i >= total) clearInterval(interval);
 
   }, 300);
-}
-function showBuket(){
-  showPage("page5");
 
-  const buket = document.getElementById("buket");
-  buket.innerHTML = "";
-
-  let total = 12; // jumlah bunga buket
-  let i = 0;
-
-  const interval = setInterval(() => {
-
-    const flower = document.createElement("div");
-    flower.classList.add("flower-item");
-    flower.innerHTML = "🌸";
-
-    buket.appendChild(flower);
-
-    setTimeout(() => {
-      flower.classList.add("show");
-    }, 50);
-
-    i++;
-    if(i >= total) clearInterval(interval);
-
-  }, 300);
+  // stop rain kalau masih jalan
+  if (rainInterval) clearInterval(rainInterval);
 }
