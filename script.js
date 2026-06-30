@@ -15,8 +15,7 @@ document.getElementById("next2").onclick = () => {
 };
 
 document.getElementById("next3").onclick = () => {
-  showPage("page4");
-  startRain();
+  showBuket();
 };
 
 /* 🌸 FLOWER MEKAR PERLUNYA SLOW */
