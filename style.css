@@ -39,3 +39,28 @@ button {
   color: white;
   cursor: pointer;
 }
+
+.buket {
+  width: 220px;
+  height: 220px;
+  margin-top: 30px;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.flower-item {
+  font-size: 28px;
+  opacity: 0;
+  transform: scale(0);
+  transition: 0.5s ease;
+}
+
+.flower-item.show {
+  opacity: 1;
+  transform: scale(1);
+}
