@@ -1,57 +1,74 @@
 body {
   margin: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: linear-gradient(to top right, #ffd6e0, #ffe9f0);
   font-family: sans-serif;
+  background: linear-gradient(to top right, #ffd6e0, #ffeef5);
   text-align: center;
 }
 
-.container {
-  padding: 20px;
+/* PAGE SYSTEM */
+.page {
+  display: none;
+  padding: 50px;
+  min-height: 100vh;
 }
 
-h1 {
-  color: #ff4d6d;
+.page.active {
+  display: block;
 }
 
-p {
-  color: #555;
-}
-
+/* BUTTON */
 button {
   padding: 10px 20px;
   border: none;
+  border-radius: 20px;
   background: #ff4d6d;
   color: white;
-  border-radius: 20px;
   cursor: pointer;
-  margin-top: 10px;
 }
 
-button:hover {
-  background: #ff2e63;
-}
-
-.buket {
+/* FLOWER */
+#flowers {
   margin-top: 30px;
-  font-size: 20px;
-  animation: grow 2s ease forwards;
+  font-size: 30px;
 }
 
-.hidden {
-  display: none;
+/* BUBBLE CHAT */
+.chat {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  margin-top: 20px;
 }
 
-@keyframes grow {
-  0% {
-    transform: scale(0);
+.bubble {
+  background: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  width: fit-content;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.5s;
+}
+
+/* RAIN FLOWER ENDING */
+.rain {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.flower-fall {
+  position: absolute;
+  top: -50px;
+  font-size: 25px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(300px);
     opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
   }
 }
