@@ -1,31 +1,57 @@
-document.addEventListener("DOMContentLoaded", () => {
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to top right, #ffd6e0, #ffe9f0);
+  font-family: sans-serif;
+  text-align: center;
+}
 
-  const pages = document.querySelectorAll(".page");
+.container {
+  padding: 20px;
+}
 
-  function showPage(id){
-    pages.forEach(p => p.classList.remove("active"));
-    document.getElementById(id).classList.add("active");
+h1 {
+  color: #ff4d6d;
+}
+
+p {
+  color: #555;
+}
+
+button {
+  padding: 10px 20px;
+  border: none;
+  background: #ff4d6d;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #ff2e63;
+}
+
+.buket {
+  margin-top: 30px;
+  font-size: 20px;
+  animation: grow 2s ease forwards;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes grow {
+  0% {
+    transform: scale(0);
+    opacity: 0;
   }
-
-  document.getElementById("btnMulai").addEventListener("click", () => {
-    showPage("page2");
-  });
-
-  document.getElementById("btnTumbuh").addEventListener("click", () => {
-    showPage("page3");
-
-    let text = document.getElementById("loadingText");
-    let dots = 0;
-
-    let interval = setInterval(() => {
-      dots = (dots + 1) % 4;
-      text.innerText = "tumbuh pelan-pelan" + ".".repeat(dots);
-    }, 400);
-
-    setTimeout(() => {
-      clearInterval(interval);
-      showPage("page4");
-    }, 3500);
-  });
-
-});
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
