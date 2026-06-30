@@ -9,10 +9,16 @@
 }
 
 body{
-    font-family: "Poppins", sans-serif;
+    margin:0;
     overflow:hidden;
-    background:linear-gradient(135deg,#ffdce8,#fff7fb);
-    color:#444;
+    font-family:sans-serif;
+
+    background:linear-gradient(
+        135deg,
+        #ffd6e8,
+        #ffe8f4,
+        #fff5fb
+    );
 }
 
 /* ===========================
