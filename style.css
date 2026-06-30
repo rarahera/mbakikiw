@@ -5,18 +5,25 @@ body {
   overflow: hidden;
 }
 
-/* PAGE TRANSITION HALUS */
+/* SEMUA PAGE NIMPA SATU SAMA LAIN */
 .page {
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.8s ease;
   position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100vh;
-  text-align: center;
-  padding-top: 80px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.6s ease;
 }
 
+/* PAGE AKTIF */
 .page.active {
   opacity: 1;
   pointer-events: auto;
@@ -31,51 +38,4 @@ button {
   background: #ff4d6d;
   color: white;
   cursor: pointer;
-}
-
-/* FLOWER */
-#flowers {
-  margin-top: 30px;
-  font-size: 28px;
-  letter-spacing: 5px;
-}
-
-/* CHAT STYLE */
-.chat {
-  margin-top: 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.bubble {
-  background: white;
-  padding: 10px 15px;
-  border-radius: 18px;
-  margin: 6px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-  opacity: 0;
-  transform: translateY(10px);
-  transition: 0.6s ease;
-}
-
-/* ENDING RAIN */
-.rain {
-  position: relative;
-  height: 250px;
-  overflow: hidden;
-}
-
-.flower {
-  position: absolute;
-  top: -20px;
-  font-size: 22px;
-  animation: fall linear forwards;
-}
-
-@keyframes fall {
-  to {
-    transform: translateY(120vh);
-    opacity: 0;
-  }
 }
