@@ -5,13 +5,13 @@ body {
   overflow: hidden;
 }
 
-/* SEMUA PAGE NIMPA SATU SAMA LAIN */
+/* =========================
+   PAGE SYSTEM
+========================= */
+
 .page {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
+  inset: 0;
 
   display: flex;
   flex-direction: column;
@@ -20,29 +20,93 @@ body {
 
   opacity: 0;
   pointer-events: none;
-  transition: 0.6s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+
+  transform: scale(0.98);
 }
 
-/* PAGE AKTIF */
 .page.active {
   opacity: 1;
   pointer-events: auto;
+  transform: scale(1);
 }
 
-/* BUTTON */
+/* =========================
+   BUTTON
+========================= */
+
 button {
   margin-top: 20px;
-  padding: 10px 20px;
+  padding: 10px 22px;
   border: none;
-  border-radius: 20px;
+  border-radius: 25px;
   background: #ff4d6d;
   color: white;
   cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
 }
 
+button:hover {
+  transform: scale(1.05);
+  background: #ff2f55;
+}
+
+/* =========================
+   FLOWERS TEXT (PAGE 2)
+========================= */
+
+#flowers {
+  margin-top: 10px;
+  font-size: 22px;
+}
+
+/* =========================
+   CHAT BUBBLES (PAGE 3)
+========================= */
+
+.bubble {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: 0.5s ease;
+  margin: 5px;
+  padding: 10px 15px;
+  background: white;
+  border-radius: 15px;
+}
+
+/* =========================
+   RAIN (PAGE 4)
+========================= */
+
+.rain {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.rain .flower {
+  position: absolute;
+  top: -20px;
+  font-size: 18px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+/* =========================
+   BUKET (PAGE 5)
+========================= */
+
 .buket {
-  width: 220px;
-  height: 220px;
+  width: 240px;
+  height: 240px;
   margin-top: 30px;
 
   display: flex;
@@ -50,9 +114,10 @@ button {
   justify-content: center;
   align-items: center;
 
-  gap: 8px;
+  gap: 6px;
 }
 
+/* bunga buket */
 .flower-item {
   font-size: 28px;
   opacity: 0;
@@ -63,4 +128,13 @@ button {
 .flower-item.show {
   opacity: 1;
   transform: scale(1);
+}
+
+/* =========================
+   PAGE 4 BUTTON (IMPORTANT)
+========================= */
+
+#toPage5 {
+  margin-top: 30px;
+  background: #ff7aa2;
 }
