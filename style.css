@@ -1,140 +1,439 @@
-body {
-  margin: 0;
-  font-family: sans-serif;
-  background: linear-gradient(to top right, #ffd6e0, #ffeef5);
-  overflow: hidden;
+/* ===========================
+   GLOBAL
+=========================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-/* =========================
-   PAGE SYSTEM
-========================= */
-
-.page {
-  position: absolute;
-  inset: 0;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.6s ease, transform 0.6s ease;
-
-  transform: scale(0.98);
+body{
+    font-family: "Poppins", sans-serif;
+    overflow:hidden;
+    background:linear-gradient(135deg,#ffdce8,#fff7fb);
+    color:#444;
 }
 
-.page.active {
-  opacity: 1;
-  pointer-events: auto;
-  transform: scale(1);
+/* ===========================
+   PAGE
+=========================== */
+
+.page{
+    position:absolute;
+    inset:0;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    opacity:0;
+    visibility:hidden;
+    transition:all .8s ease;
+
+    transform:translateY(25px);
+    text-align:center;
+    padding:20px;
 }
 
-/* =========================
+.page.active{
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+}
+
+h1{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+h2{
+    font-size:36px;
+    margin-bottom:15px;
+}
+
+p{
+    font-size:18px;
+    margin-bottom:25px;
+    line-height:1.7;
+}
+
+/* ===========================
    BUTTON
-========================= */
+=========================== */
 
-button {
-  margin-top: 20px;
-  padding: 10px 22px;
-  border: none;
-  border-radius: 25px;
-  background: #ff4d6d;
-  color: white;
-  cursor: pointer;
-  font-size: 14px;
-  transition: 0.3s;
+button{
+
+    padding:14px 28px;
+
+    border:none;
+    border-radius:999px;
+
+    background:#ff5f8f;
+    color:white;
+
+    font-size:17px;
+
+    cursor:pointer;
+
+    transition:.3s;
 }
 
-button:hover {
-  transform: scale(1.05);
-  background: #ff2f55;
+button:hover{
+
+    transform:scale(1.08);
+
+    background:#ff3d78;
+
+    box-shadow:0 10px 25px rgba(255,80,120,.35);
+
 }
 
-/* =========================
-   FLOWERS TEXT (PAGE 2)
-========================= */
+/* ===========================
+   PAGE 2
+=========================== */
 
-#flowers {
-  margin-top: 10px;
-  font-size: 22px;
+#flowers{
+
+    font-size:45px;
+
+    min-height:70px;
+
+    letter-spacing:8px;
+
 }
 
-/* =========================
-   CHAT BUBBLES (PAGE 3)
-========================= */
+/* ===========================
+   CHAT
+=========================== */
 
-.bubble {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: 0.5s ease;
-  margin: 5px;
-  padding: 10px 15px;
-  background: white;
-  border-radius: 15px;
+.chat{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:12px;
+
+    width:350px;
+
 }
 
-/* =========================
-   RAIN (PAGE 4)
-========================= */
+.bubble{
 
-.rain {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
+    background:white;
+
+    padding:14px 18px;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+
+    opacity:0;
+
+    transform:translateY(25px);
+
+    transition:.6s;
+
 }
 
-.rain .flower {
-  position: absolute;
-  top: -20px;
-  font-size: 18px;
-  animation: fall linear forwards;
+/* ===========================
+   PAGE 4
+=========================== */
+
+.rain{
+
+    position:absolute;
+
+    inset:0;
+
+    overflow:hidden;
+
+    pointer-events:none;
+
 }
 
-@keyframes fall {
-  to {
-    transform: translateY(110vh);
-    opacity: 0;
-  }
+.flowerRain{
+
+    position:absolute;
+
+    top:-40px;
+
+    font-size:26px;
+
+    animation:fall linear forwards;
+
 }
 
-/* =========================
-   BUKET (PAGE 5)
-========================= */
+@keyframes fall{
 
-.buket {
-  width: 240px;
-  height: 240px;
-  margin-top: 30px;
+    to{
 
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+        transform:translateY(120vh) rotate(360deg);
 
-  gap: 6px;
+        opacity:0;
+
+    }
+
 }
 
-/* bunga buket */
-.flower-item {
-  font-size: 28px;
-  opacity: 0;
-  transform: scale(0);
-  transition: 0.5s ease;
+/* ===========================
+   PAGE 5
+=========================== */
+
+.subtitle{
+
+    color:#777;
+
+    margin-bottom:20px;
+
 }
 
-.flower-item.show {
-  opacity: 1;
-  transform: scale(1);
+/* area buket */
+
+#bouquet{
+
+    position:relative;
+
+    width:260px;
+
+    height:330px;
+
+}
+/* ===========================
+   STEM (BATANG)
+=========================== */
+
+.stem{
+    position:absolute;
+    bottom:55px;
+    width:5px;
+    height:0;
+    background:#4caf50;
+    border-radius:10px;
+    transform-origin:bottom;
 }
 
-/* =========================
-   PAGE 4 BUTTON (IMPORTANT)
-========================= */
+.stem1{ left:130px; transform:rotate(0deg); }
+.stem2{ left:130px; transform:rotate(-18deg); }
+.stem3{ left:130px; transform:rotate(18deg); }
+.stem4{ left:130px; transform:rotate(-35deg); }
+.stem5{ left:130px; transform:rotate(35deg); }
 
-#toPage5 {
-  margin-top: 30px;
-  background: #ff7aa2;
+/* ===========================
+   FLOWERS
+=========================== */
+
+#bouquet .flower{
+    position:absolute;
+    font-size:42px;
+
+    opacity:0;
+    transform:scale(0);
+
+    transition:
+        transform .6s ease,
+        opacity .6s ease;
+}
+
+/* posisi bunga */
+
+.flower1{
+    left:110px;
+    top:35px;
+}
+
+.flower2{
+    left:72px;
+    top:78px;
+}
+
+.flower3{
+    left:148px;
+    top:78px;
+}
+
+.flower4{
+    left:45px;
+    top:125px;
+}
+
+.flower5{
+    left:175px;
+    top:125px;
+}
+
+/* ketika muncul */
+
+.flower.show{
+
+    opacity:1;
+
+    transform:scale(1.15);
+
+}
+
+/* ===========================
+   PITA BUKET
+=========================== */
+
+.ribbon{
+
+    position:absolute;
+
+    bottom:40px;
+
+    left:110px;
+
+    font-size:34px;
+
+    opacity:0;
+
+    transform:scale(.4);
+
+    transition:.5s;
+
+}
+
+.ribbon.show{
+
+    opacity:1;
+
+    transform:scale(1);
+
+}
+
+/* ===========================
+   ENDING TEXT
+=========================== */
+
+#endingText{
+
+    margin-top:35px;
+
+    font-size:20px;
+
+    color:#ff4f81;
+
+    opacity:0;
+
+    transform:translateY(20px);
+
+    transition:1s;
+
+    max-width:500px;
+
+    line-height:1.7;
+
+}
+
+#endingText.show{
+
+    opacity:1;
+
+    transform:translateY(0);
+
+}
+
+/* ===========================
+   GROW STEM
+=========================== */
+
+@keyframes growStem{
+
+    from{
+
+        height:0;
+
+    }
+
+    to{
+
+        height:180px;
+
+    }
+
+}
+
+.stem.grow{
+
+    animation:growStem .8s forwards;
+
+}
+
+/* ===========================
+   LOVE FLOATING
+=========================== */
+
+.love{
+
+    position:absolute;
+
+    bottom:60px;
+
+    font-size:20px;
+
+    animation:loveUp 4s linear forwards;
+
+    pointer-events:none;
+
+}
+
+@keyframes loveUp{
+
+    from{
+
+        transform:translateY(0) scale(.5);
+
+        opacity:0;
+
+    }
+
+    20%{
+
+        opacity:1;
+
+    }
+
+    to{
+
+        transform:translateY(-350px) scale(1.3);
+
+        opacity:0;
+
+    }
+
+}
+
+/* ===========================
+   RESPONSIVE
+=========================== */
+
+@media(max-width:600px){
+
+    h1{
+        font-size:42px;
+    }
+
+    h2{
+        font-size:28px;
+    }
+
+    p{
+        font-size:16px;
+    }
+
+    .chat{
+
+        width:90%;
+
+    }
+
+    #bouquet{
+
+        transform:scale(.9);
+
+    }
+
 }
