@@ -88,3 +88,29 @@ function showBuket(){
 
   }, 300);
 }
+function showBuket(){
+  showPage("page5");
+
+  const buket = document.getElementById("buket");
+  buket.innerHTML = "";
+
+  let total = 12; // jumlah bunga buket
+  let i = 0;
+
+  const interval = setInterval(() => {
+
+    const flower = document.createElement("div");
+    flower.classList.add("flower-item");
+    flower.innerHTML = "🌸";
+
+    buket.appendChild(flower);
+
+    setTimeout(() => {
+      flower.classList.add("show");
+    }, 50);
+
+    i++;
+    if(i >= total) clearInterval(interval);
+
+  }, 300);
+}
