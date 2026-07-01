@@ -1,283 +1,125 @@
-// =============================
-// GANTI PAGE
-// =============================
+const pages = document.querySelectorAll(".page");
 
-function showPage(id) {
-    document.querySelectorAll(".page").forEach(page => {
-        page.classList.remove("active");
-    });
-
+function showPage(id){
+    pages.forEach(page=>page.classList.remove("active"));
     document.getElementById(id).classList.add("active");
 }
 
-// =============================
+// ======================
 // PAGE 1
-// =============================
+// ======================
 
-document.getElementById("next1").addEventListener("click", () => {
+const next1 = document.getElementById("next1");
+const noBtn = document.getElementById("noBtn");
 
+next1.addEventListener("click", ()=>{
     showPage("page2");
-
-    setTimeout(showFlowers, 500);
-
+    startCry();
 });
 
-// =============================
+noBtn.addEventListener("mouseover", ()=>{
+    const w = window.innerWidth - 120;
+    const h = window.innerHeight - 80;
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = Math.random() * w + "px";
+    noBtn.style.top = Math.random() * h + "px";
+});
+
+// Opsional: Reset posisi saat mouse keluar
+noBtn.addEventListener("mouseout", ()=>{
+    noBtn.style.position = "static";
+});
+
+
+// ======================
 // PAGE 2
-// =============================
+// ======================
 
-document.getElementById("next2").addEventListener("click", () => {
+function startCry(){
+    const emoji = document.getElementById("emoji");
+    const water = document.getElementById("water");
+    const text = document.querySelectorAll("#text2 p");
 
+    setTimeout(()=>emoji.innerHTML="😭", 1000);
+    setTimeout(()=>emoji.innerHTML="😭😭", 2000);
+    setTimeout(()=>water.style.height="45%", 2500);
+
+    text.forEach((p, i)=>{
+        setTimeout(()=>{
+            p.style.opacity = "1";
+        }, i * 1000);
+    });
+}
+
+const next2 = document.getElementById("next2");
+next2.addEventListener("click", ()=>{
     showPage("page3");
-
-    setTimeout(showBubble, 300);
-
 });
 
-// =============================
+
+// ======================
 // PAGE 3
-// =============================
+// ======================
 
-document.getElementById("next3").addEventListener("click", () => {
+const envelope = document.getElementById("envelope");
+const gift = document.getElementById("gift");
+const msgs = document.querySelectorAll(".msg");
 
+envelope.addEventListener("click", ()=>{
+    envelope.style.display = "none";
+    gift.style.display = "block";
+
+    msgs.forEach((m, i)=>{
+        setTimeout(()=>{
+            m.style.display = "block";
+        }, i * 1000);
+    });
+});
+
+const next3 = document.getElementById("next3");
+next3.addEventListener("click", ()=>{
     showPage("page4");
-
-    startRain();
-
 });
 
-// =============================
+
+// ======================
 // PAGE 4
-// =============================
+// ======================
 
-document.getElementById("next4").addEventListener("click", () => {
-
-    stopRain();
-
+const next4 = document.getElementById("next4");
+next4.addEventListener("click", ()=>{
     showPage("page5");
-
-    growBouquet();
-
+    flowerRain();
 });
 
-// =============================
-// PAGE 2 FLOWERS
-// =============================
 
-function showFlowers(){
-
-    const flower = document.getElementById("flowers");
-
-    flower.innerHTML = "";
-
-    let total = 8;
-
-    let i = 0;
-
-    const interval = setInterval(()=>{
-
-        flower.innerHTML += "🌸 ";
-
-        i++;
-
-        if(i >= total){
-
-            clearInterval(interval);
-
-        }
-
-    },500);
-
-}
-
-// =============================
-// PAGE 3 CHAT
-// =============================
-
-function showBubble(){
-
-    const bubble = document.querySelectorAll(".bubble");
-
-    bubble.forEach((item,index)=>{
-
-        item.style.opacity=0;
-        item.style.transform="translateY(20px)";
-
-        setTimeout(()=>{
-
-            item.style.opacity=1;
-            item.style.transform="translateY(0)";
-
-        },index*700);
-
-    });
-
-}
-
-// =============================
-// PAGE 4 FLOWER RAIN
-// =============================
-
-let rain;
-
-function startRain(){
-
-    const container=document.querySelector(".rain");
-
-    container.innerHTML="";
-
-    rain=setInterval(()=>{
-
-        const flower=document.createElement("div");
-
-        flower.className="flowerRain";
-
-        flower.innerHTML="🌸";
-
-        flower.style.left=Math.random()*100+"%";
-
-        flower.style.animationDuration=(3+Math.random()*2)+"s";
-
-        container.appendChild(flower);
-
-        setTimeout(()=>{
-
-            flower.remove();
-
-        },5000);
-
-    },250);
-
-}
-
-function stopRain(){
-
-    clearInterval(rain);
-
-}
-
-// =============================
+// ======================
 // PAGE 5
-// =============================
+// ======================
 
-function growBouquet(){
+let flowerInterval = null;
 
-    const stems=document.querySelectorAll(".stem");
+function flowerRain(){
+    const area = document.getElementById("flowers");
 
-    const flowers=document.querySelectorAll("#bouquet .flower");
+    // Hentikan interval sebelumnya kalau ada
+    if(flowerInterval) clearInterval(flowerInterval);
 
-    const text=document.getElementById("endingText");
+    flowerInterval = setInterval(()=>{
+        const flower = document.createElement("div");
+        flower.className = "flower";
+        flower.innerHTML = "🌸";
+        flower.style.left = Math.random() * 100 + "vw";
+        
+        const duration = Math.random() * 3 + 3;
+        flower.style.animationDuration = duration + "s";
 
-    text.classList.remove("show");
-
-    stems.forEach(stem=>{
-
-        stem.classList.remove("grow");
-
-    });
-
-    flowers.forEach(f=>{
-
-        f.classList.remove("show");
-
-    });
-
-    // batang tumbuh
-
-    stems.forEach((stem,index)=>{
+        area.appendChild(flower);
 
         setTimeout(()=>{
+            flower.remove();
+        }, duration * 1000);
 
-            stem.classList.add("grow");
-
-        },index*250);
-
-    });
-
-    // bunga mekar
-
-    flowers.forEach((flower,index)=>{
-
-        setTimeout(()=>{
-
-            flower.classList.add("show");
-
-        },1700+(index*350));
-
-    });
-
-    // pita
-
-    setTimeout(()=>{
-
-        let ribbon=document.querySelector(".ribbon");
-
-        if(!ribbon){
-
-            ribbon=document.createElement("div");
-
-            ribbon.className="ribbon";
-
-            ribbon.innerHTML="🎀";
-
-            document.getElementById("bouquet").appendChild(ribbon);
-
-        }
-
-        ribbon.classList.add("show");
-
-    },3400);
-
-    // love-love
-
-    setTimeout(()=>{
-
-        createLove();
-
-    },3800);
-
-    // text terakhir
-
-    setTimeout(()=>{
-
-        text.classList.add("show");
-
-    },4700);
-
-}
-
-// =============================
-// LOVE
-// =============================
-
-function createLove(){
-
-    const bouquet=document.getElementById("bouquet");
-
-    let total=25;
-
-    for(let i=0;i<total;i++){
-
-        setTimeout(()=>{
-
-            const love=document.createElement("div");
-
-            love.className="love";
-
-            love.innerHTML=Math.random()>0.5?"🤍":"💕";
-
-            love.style.left=(90+Math.random()*80)+"px";
-
-            bouquet.appendChild(love);
-
-            setTimeout(()=>{
-
-                love.remove();
-
-            },4000);
-
-        },i*180);
-
-    }
-
+    }, 250);
 }
